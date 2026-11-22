@@ -1,2 +1,2 @@
 # scoutpl
-Recrutement optimal pour la Premier League sous contraintes budgétaires et incertitude d'estimation : valorisation des joueurs par apprentissage automatique et programmation linéaire en nombres entiers.
+Optimal Premier League recruitment under budget constraints and valuation uncertainty: ML player valuation (XGBoost, quantile regression) + integer linear programming.
