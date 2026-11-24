@@ -47,6 +47,19 @@ def load_valuations(start="2021-07-01"):
     return val.reset_index(drop=True)
 
 
+def load_fpl_players(seasons=SEASONS):
+    # one row per FPL player per season; id is the same as element in merged_gw
+    frames = []
+    for s in seasons:
+        df = pd.read_csv(
+            VAASTAV / s / "players_raw.csv",
+            usecols=["id", "code", "first_name", "second_name", "web_name"],
+        )
+        df["season"] = s
+        frames.append(df)
+    return pd.concat(frames, ignore_index=True).rename(columns={"id": "element"})
+
+
 # market_value_in_eur, highest_market_value_in_eur and contract_expiration_date excluded (leakage)
 def load_players():
     return pd.read_csv(
