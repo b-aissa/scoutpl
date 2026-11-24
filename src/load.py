@@ -39,11 +39,10 @@ def load_gw(seasons=SEASONS):
 
 
 def load_valuations(start="2021-07-01"):
+    # no filter on player_club_domestic_competition_id: it's not reliable at the valuation date
+    # (Firmino's Liverpool values are tagged SA1), Premier League clubs are kept in 02_matching
     val = pd.read_csv(TM / "player_valuations.csv.gz", parse_dates=["date"])
-    val = val[
-        (val["player_club_domestic_competition_id"] == "GB1")
-        & (val["date"] >= start)
-    ]
+    val = val[val["date"] >= start]
     return val.reset_index(drop=True)
 
 
